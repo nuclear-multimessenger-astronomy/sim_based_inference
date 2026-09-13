@@ -15,7 +15,7 @@ This is archival code. It is preserved for reproducibility and historical refere
 ## Install as a standalone package
 
 ::: [!note]
-In general, this package is not actively maintained and is not recommended for new development. It is provided for archival purposes and to support reproducibility of legacy workflows.
+In general, this package is not actively maintained and is not recommended for new development. It is provided for archival purposes and to support reproducibility of legacy workflows. We do not guarantee compatibility with future versions of NMMA or other dependencies and cannot offer support for issues arising from its use. Users are encouraged to migrate to the current NMMA runtime and supported workflows for new projects.
 :::
 
 From a checkout, install the model library with:
