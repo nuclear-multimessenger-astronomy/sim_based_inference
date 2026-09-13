@@ -12,10 +12,31 @@ The code was originally integrated into NMMA by commit `9e88cffb` and provided a
 
 This is archival code. It is preserved for reproducibility and historical reference, and is not part of the maintained NMMA runtime.
 
+## Install as a standalone package
+
+::: [!note]
+In general, this package is not actively maintained and is not recommended for new development. It is provided for archival purposes and to support reproducibility of legacy workflows.
+:::
+
+From a checkout, install the model library with:
+
+```bash
+python -m pip install .
+```
+
+This installs the preprocessing, embedding, and normalizing-flow modules and includes the bundled trained weights. Bilby is only needed for the result-conversion helper, and can be installed with:
+
+```bash
+python -m pip install ".[bilby]"
+```
+
+The package does not provide the NMMA `lightcurve-analysis` command or light-curve generation. Those workflows still require a compatible NMMA installation; the standalone package preserves and exposes the model code and its assets.
+
 ## Original dependencies
 
 - Python
 - PyTorch
 - nflows
-- torchvision
-- NMMA/Bilby for the original command-line integration
+- tensorboard (used by the training helpers)
+- Bilby (optional, only for `cast_as_bilby_result`)
+- NMMA (optional, only for the original command-line integration)

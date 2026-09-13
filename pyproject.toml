@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nmma-legacy-lfi"
+version = "0.1.0"
+description = "Archived simulation-based inference models from NMMA"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "pandas",
+    "tqdm",
+    "torch",
+    "nflows",
+    "tensorboard",
+]
+
+[project.optional-dependencies]
+bilby = ["bilby"]
+
+[tool.setuptools.packages.find]
+include = ["nmma", "nmma.*"]
+
+[tool.setuptools.package-data]
+"nmma.mlmodel" = ["*.pth"]

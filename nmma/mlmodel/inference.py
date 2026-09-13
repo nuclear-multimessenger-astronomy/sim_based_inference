@@ -1,9 +1,15 @@
-import bilby
 import pandas as pd
 
 num_points = 121
 
 def cast_as_bilby_result(samples, truth, priors):
+    try:
+        import bilby
+    except ImportError as exc:
+        raise ImportError(
+            "Bilby is required for cast_as_bilby_result; "
+            "install the optional dependency with `pip install nmma-legacy-lfi[bilby]`."
+        ) from exc
     
     posterior = dict.fromkeys({'log10_mej', 'log10_vej', 'log10_Xlan'})
     samples_numpy = samples.numpy()
