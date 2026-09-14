@@ -8,6 +8,7 @@ from nmma.mlmodel.dataprocessing import (
     get_names,
     json_to_df,
     pad_the_data,
+    t_min,
 )
 
 
@@ -43,7 +44,7 @@ def test_json_to_df_unpacks_photometry(tmp_path):
 def test_pad_the_data_adds_time_and_detection_fillers():
     actual = pd.DataFrame(
         {
-            "t": [44240.50021937881, 44240.75021937881],
+            "t": [t_min + 0.5, t_min + 0.75],
             "ztfg": [20.0, 21.0],
         }
     )

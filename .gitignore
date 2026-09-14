@@ -1,0 +1,16 @@
+# Python caches and test output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Packaging and build output
+.venv/
+build/
+dist/
+*.egg-info/
+
+# Local tooling
+.mypy_cache/
+.ruff_cache/
