@@ -1,5 +1,6 @@
 import json
 
+import numpy as np
 import pandas as pd
 
 from nmma.mlmodel.dataprocessing import (
@@ -34,7 +35,7 @@ def test_json_to_df_unpacks_photometry(tmp_path):
         bands=["ztfg", "ztfr"],
     )[0]
 
-    assert list(result.columns) == ["t", "ztfg", "ztfr", "num_detections", "sim_id"]
+    assert list(result.columns) == ["ztfg", "ztfr", "t", "num_detections", "sim_id"]
     assert result["num_detections"].tolist() == [2, 2]
     assert result["sim_id"].tolist() == [0, 0]
 
@@ -42,7 +43,7 @@ def test_json_to_df_unpacks_photometry(tmp_path):
 def test_pad_the_data_adds_time_and_detection_fillers():
     actual = pd.DataFrame(
         {
-            "t": [44242.50021937881, 44242.75021937881],
+            "t": [44240.50021937881, 44240.75021937881],
             "ztfg": [20.0, 21.0],
         }
     )
@@ -55,8 +56,8 @@ def test_pad_the_data_adds_time_and_detection_fillers():
         filler_data=22.0,
     )
 
-    assert padded["t"].tolist() == [0.0, 0.25, 0.5, 0.75]
-    assert padded["ztfg"].tolist() == [22.0, 22.0, 20.0, 21.0]
+    np.testing.assert_allclose(padded["t"], [0.0, 0.5, 0.75, 1.0])
+    assert padded["ztfg"].tolist() == [22.0, 20.0, 21.0, 22.0]
 
 
 def test_gen_append_filler_uses_requested_count():
